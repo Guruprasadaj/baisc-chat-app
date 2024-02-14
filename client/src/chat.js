@@ -28,10 +28,10 @@ function Chat({ socket, username, room }) {
       setMessageList((list) => [...list, data]);
     };
   
-    // Attach the event listener
+    
     socket.on("receive_message", receiveMessageHandler);
   
-    // Clean up the event listener when the component unmounts
+    
     return () => {
       socket.off("receive_message", receiveMessageHandler);
     };
