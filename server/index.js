@@ -3,9 +3,13 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3001;
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:3004";
 
 app.use(cors({
-  origin: "http://localhost:3004", 
+  origin:  CLIENT_ORIGIN, 
   methods: ["GET", "POST"],
 }));
 
@@ -13,7 +17,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3004", 
+    origin: CLIENT_ORIGIN,  
     methods: ["GET", "POST"],
   },
 });
@@ -35,6 +39,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING");
+server.listen(PORT, () => {
+  console.log(`SERVER RUNNING on ${PORT}`);
 });
