@@ -22,12 +22,14 @@ jobs:
        run: |
          cd client
          npm install
+         npm audit --audit-level=high || true
          npm test -- --watchAll=false --passWithNoTests
 
      - name: Test server
        run: |
          cd server
          npm install
+         npm audit --audit-level=high || true
          node -c index.js
 
      - name: Set up Docker
