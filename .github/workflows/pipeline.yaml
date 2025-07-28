@@ -25,7 +25,7 @@ jobs:
           npm test -- --watchAll=false --passWithNoTests
 
       - name: Test server
-        run:
+        run: |
           cd server
           npm install
           node -c index.js
